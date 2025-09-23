@@ -14,6 +14,9 @@ function Navbar() {
           <li className="hover:underline">
             <Link href="/signup">Signup</Link>
           </li>
+          <li className="hover:underline">
+            <Link href="/dashboard">Dashboard</Link>
+          </li>
         </ul>
       </nav>
     </header>
