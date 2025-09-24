@@ -53,7 +53,6 @@ export default function SignupPage() {
   return (
     <Wrapper title="Signup">
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-6">
-        {/* Email */}
         <div className="flex flex-col gap-2">
           <Label htmlFor="email">Email</Label>
           <Input
@@ -67,7 +66,6 @@ export default function SignupPage() {
           )}
         </div>
 
-        {/* Password */}
         <div className="flex flex-col gap-2">
           <Label htmlFor="password">Password</Label>
           <Input id="password" type="password" {...register("password")} />
@@ -78,7 +76,6 @@ export default function SignupPage() {
           )}
         </div>
 
-        {/* Confirm Password */}
         <div className="flex flex-col gap-2">
           <Label htmlFor="confirmPassword">Confirm Password</Label>
           <Input
@@ -93,7 +90,6 @@ export default function SignupPage() {
           )}
         </div>
 
-        {/* Submit */}
         <Button
           type="submit"
           className="w-full"
