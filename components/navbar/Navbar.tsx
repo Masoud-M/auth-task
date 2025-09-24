@@ -1,10 +1,17 @@
+"use client";
+
 import Link from "next/link";
+import Button from "../auth/Button";
+import { useLogout } from "@/lib/hooks/useLogout";
+import { useGetUser } from "@/lib/hooks/useGetUser";
 
 function Navbar() {
+  const { data } = useGetUser();
+  const { mutate: logout, status } = useLogout();
   return (
     <header>
-      <nav>
-        <ul className="flex gap-4 text-blue-500">
+      <nav className="px-8 py-4">
+        <ul className="flex justify-center items-center gap-4">
           <li className="hover:underline">
             <Link href="/">Home</Link>
           </li>
@@ -17,6 +24,17 @@ function Navbar() {
           <li className="hover:underline">
             <Link href="/dashboard">Dashboard</Link>
           </li>
+          {data && (
+            <li className="hover:underline">
+              <Button
+                className="bg-red-500"
+                disabled={status === "pending"}
+                onClick={() => logout()}
+              >
+                {status === "pending" ? "Loading..." : "Logout"}
+              </Button>
+            </li>
+          )}
         </ul>
       </nav>
     </header>
