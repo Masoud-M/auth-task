@@ -4,7 +4,7 @@ export default function Container({
   children: React.ReactNode;
 }>) {
   return (
-    <section className="justify-center items-center grid min-h-svh">
+    <section className="justify-center items-center grid min-h-[80dvh]">
       {children}
     </section>
   );

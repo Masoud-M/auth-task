@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import Button from "../auth/Button";
+import Button from "../ui/Button";
 import { useLogout } from "@/lib/hooks/useLogout";
 import { useGetUser } from "@/lib/hooks/useGetUser";
 

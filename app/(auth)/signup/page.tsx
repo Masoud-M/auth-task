@@ -1,6 +1,6 @@
 "use client";
 
-import Button from "@/components/auth/Button";
+import Button from "@/components/ui/Button";
 import Input from "@/components/auth/Input";
 import Label from "@/components/auth/Label";
 import Wrapper from "@/components/auth/Wrapper";
