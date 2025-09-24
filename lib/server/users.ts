@@ -21,7 +21,7 @@ export async function getUser() {
 //    Signup    //
 //              //
 //////////////////
-export async function updateAccountAction(values: {
+export async function signupAction(values: {
   email: string;
   password: string;
 }) {
