@@ -1,3 +1,4 @@
+import Button from "@/components/auth/Button";
 import Input from "@/components/auth/Input";
 import Label from "@/components/auth/Label";
 import Link from "next/link";
@@ -25,6 +26,11 @@ export default function SignupPage() {
             <div className="flex flex-col gap-2">
               <Label htmlFor="password-confirm">Confirm your password</Label>
               <Input type="password" id="password-confirm" required />
+            </div>
+            <div className="flex flex-col gap-2">
+              <Button variant="outline" type="submit" className="w-full">
+                Signup
+              </Button>
             </div>
           </div>
         </form>
