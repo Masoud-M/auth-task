@@ -24,7 +24,7 @@ export default function LoginPage() {
           </div>
 
           <div className="flex flex-col gap-2">
-            <Button variant="outline" type="submit" className="w-full">
+            <Button type="submit" className="w-full">
               Login
             </Button>
           </div>

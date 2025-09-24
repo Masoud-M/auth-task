@@ -27,7 +27,7 @@ export default function SignupPage() {
             <Input type="password" id="password-confirm" required />
           </div>
           <div className="flex flex-col gap-2">
-            <Button variant="outline" type="submit" className="w-full">
+            <Button type="submit" className="w-full">
               Signup
             </Button>
           </div>
