@@ -1,12 +1,10 @@
-import Container from "@/components/Container";
-import Image from "next/image";
+import Container from "@/components/ui/Container";
+import Heading from "@/components/ui/Heading";
 
 export default function Home() {
   return (
     <Container>
-      <h1 className="font-semibold text-4xl">
-        Homepage. Accessible by all users.
-      </h1>
+      <Heading text="Homepage. Accessible by all users." />
     </Container>
   );
 }
