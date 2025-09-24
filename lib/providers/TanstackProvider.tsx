@@ -27,7 +27,7 @@ export default function TanstackProvider({
       <HydrationBoundary state={dehydrate(queryClient)}>
         {children}
       </HydrationBoundary>
-      <ReactQueryDevtools initialIsOpen={false} />
+      <ReactQueryDevtools initialIsOpen={true} />
     </QueryClientProvider>
   );
 }
