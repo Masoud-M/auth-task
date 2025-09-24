@@ -74,8 +74,8 @@ export async function logout() {
 
   if (error) {
     throw new Error(error.message);
+  } else {
+    revalidatePath("/", "layout");
+    redirect("/");
   }
-
-  revalidatePath("/", "layout");
-  redirect("/");
 }

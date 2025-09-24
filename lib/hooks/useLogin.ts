@@ -8,6 +8,7 @@ export function useLogin() {
       loginRequest(values),
     onSuccess: async () => {
       await queryClient.invalidateQueries();
+      await queryClient.removeQueries();
     },
     onError: (err) => {
       console.log("ERROR", err);
