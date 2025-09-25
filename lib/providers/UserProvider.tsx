@@ -36,7 +36,6 @@ export function UserProvider({
     setError(null);
     try {
       const loggedInUser = await loginAction(values);
-      setUser(loggedInUser);
     } catch (err: any) {
       setError(err.message ?? "Login failed");
     } finally {
