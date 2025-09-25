@@ -8,7 +8,7 @@ import Link from "next/link";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { useLogin } from "@/lib/hooks/useLogin";
+import { useUser } from "@/lib/providers/UserProvider";
 
 const formSchema = z.object({
   email: z.string().email({ message: "Please enter a valid email address." }),
@@ -30,10 +30,10 @@ export default function LoginPage() {
     },
   });
 
-  const { mutate: login, status } = useLogin();
+  const { login, loading, error } = useUser();
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    login(values);
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    await login(values);
   }
 
   return (
@@ -54,6 +54,7 @@ export default function LoginPage() {
               </span>
             )}
           </div>
+
           <div className="flex flex-col gap-2">
             <Label htmlFor="password">Password</Label>
             <Input type="password" id="password" {...register("password")} />
@@ -64,17 +65,16 @@ export default function LoginPage() {
             )}
           </div>
 
+          {error && <p className="text-red-500 text-sm">{error}</p>}
+
           <div className="flex flex-col gap-2">
-            <Button
-              disabled={status === "pending"}
-              type="submit"
-              className="w-full"
-            >
-              {status === "pending" ? "Loading..." : "Login"}
+            <Button disabled={loading} type="submit" className="w-full">
+              {loading ? "Loading..." : "Login"}
             </Button>
           </div>
         </div>
       </form>
+
       <p className="mt-6 text-neutral-500 text-sm">
         Don't have an account?
         <Link href="/signup" className="ml-1 underline underline-offset-4">
