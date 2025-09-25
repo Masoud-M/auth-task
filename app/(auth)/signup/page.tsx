@@ -8,7 +8,7 @@ import Link from "next/link";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { useSignup } from "@/lib/hooks/useSignup";
+import { useUser } from "@/lib/providers/UserProvider";
 
 const formSchema = z
   .object({
@@ -44,10 +44,10 @@ export default function SignupPage() {
     },
   });
 
-  const { mutate: signup, status } = useSignup();
+  const { signup, loading, error } = useUser();
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    signup(values);
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    await signup({ email: values.email, password: values.password });
   }
 
   return (
@@ -90,12 +90,10 @@ export default function SignupPage() {
           )}
         </div>
 
-        <Button
-          type="submit"
-          className="w-full"
-          disabled={status === "pending"}
-        >
-          {status === "pending" ? "Loading..." : "Signup"}
+        {error && <p className="text-red-500 text-sm">{error}</p>}
+
+        <Button type="submit" className="w-full" disabled={loading}>
+          {loading ? "Loading..." : "Signup"}
         </Button>
       </form>
 
