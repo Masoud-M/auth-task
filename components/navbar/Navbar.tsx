@@ -2,12 +2,11 @@
 
 import Link from "next/link";
 import Button from "../ui/Button";
-import { useLogout } from "@/lib/hooks/useLogout";
-import { useGetUser } from "@/lib/hooks/useGetUser";
+import { useUser } from "@/lib/providers/UserProvider";
 
 function Navbar() {
-  const { data } = useGetUser();
-  const { mutate: logout, status } = useLogout();
+  const { user, logout, loading } = useUser();
+
   return (
     <header>
       <nav className="px-8 py-4">
@@ -15,23 +14,27 @@ function Navbar() {
           <li className="hover:underline">
             <Link href="/">Home</Link>
           </li>
-          <li className="hover:underline">
-            <Link href="/login">Login</Link>
-          </li>
-          <li className="hover:underline">
-            <Link href="/signup">Signup</Link>
-          </li>
+          {!user && (
+            <>
+              <li className="hover:underline">
+                <Link href="/login">Login</Link>
+              </li>
+              <li className="hover:underline">
+                <Link href="/signup">Signup</Link>
+              </li>
+            </>
+          )}
           <li className="hover:underline">
             <Link href="/dashboard">Dashboard</Link>
           </li>
-          {data && (
+          {user && (
             <li>
               <Button
                 className="bg-red-500"
-                disabled={status === "pending"}
-                onClick={() => logout()}
+                disabled={loading}
+                onClick={logout}
               >
-                {status === "pending" ? "Logging out..." : "Logout"}
+                {loading ? "Logging out..." : "Logout"}
               </Button>
             </li>
           )}
