@@ -25,13 +25,13 @@ function Navbar() {
             <Link href="/dashboard">Dashboard</Link>
           </li>
           {data && (
-            <li className="hover:underline">
+            <li>
               <Button
                 className="bg-red-500"
                 disabled={status === "pending"}
                 onClick={() => logout()}
               >
-                {status === "pending" ? "Loading..." : "Logout"}
+                {status === "pending" ? "Logging out..." : "Logout"}
               </Button>
             </li>
           )}
