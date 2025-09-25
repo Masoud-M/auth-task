@@ -49,17 +49,16 @@ export async function loginAction(values: { email: string; password: string }) {
   const supabase = createClient();
   const { auth } = supabase;
 
-  const { error } = await auth.signInWithPassword({
+  const { error, data } = await auth.signInWithPassword({
     email: values.email,
     password: values.password,
   });
 
   if (error) {
     redirect("/error");
-  } else {
-    revalidatePath("/", "layout");
-    redirect("/dashboard");
   }
+
+  return data.user;
 }
 
 //////////////////
@@ -67,15 +66,12 @@ export async function loginAction(values: { email: string; password: string }) {
 //    Logout    //
 //              //
 //////////////////
-export async function logout() {
+export async function logoutAction() {
   const supabase = createClient();
 
   const { error } = await supabase.auth.signOut();
 
   if (error) {
     throw new Error(error.message);
-  } else {
-    revalidatePath("/", "layout");
-    redirect("/");
   }
 }
