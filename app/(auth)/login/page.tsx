@@ -9,6 +9,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { useUser } from "@/lib/providers/UserProvider";
+import ErrorMessage from "@/components/auth/ErrorMessage";
 
 const formSchema = z.object({
   email: z.string().email({ message: "Please enter a valid email address." }),
@@ -48,20 +49,16 @@ export default function LoginPage() {
               id="email"
               {...register("email")}
             />
-            {errors.email && (
-              <span className="text-red-500 text-sm">
-                {errors.email.message}
-              </span>
+            {errors.email?.message && (
+              <ErrorMessage text={errors.email.message} />
             )}
           </div>
 
           <div className="flex flex-col gap-2">
             <Label htmlFor="password">Password</Label>
             <Input type="password" id="password" {...register("password")} />
-            {errors.password && (
-              <span className="text-red-500 text-sm">
-                {errors.password.message}
-              </span>
+            {errors.password?.message && (
+              <ErrorMessage text={errors.password.message} />
             )}
           </div>
 
